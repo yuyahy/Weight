@@ -1,0 +1,5 @@
+<h1>体重</h1>
+  <% @human.each do |human| %>
+        <%= human.weight %><br>
+  <% end %>
+<%= link_to '戻る', human_path %>

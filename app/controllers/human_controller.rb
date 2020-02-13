@@ -9,7 +9,11 @@ class HumanController < ApplicationController
     
     def create
       @human = Human.create(human_params)
-      redirect_to human_path
+      redirect_to human_path(@human)
+    end
+    
+    def show
+      @human = Human.where(id: params[:id])
     end
     
     private

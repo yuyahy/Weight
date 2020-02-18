@@ -13,7 +13,7 @@ class HumanController < ApplicationController
     end
     
     def show
-      @human = Human.where(id: params[:id])
+      @human = Human.all
     end
     
     private

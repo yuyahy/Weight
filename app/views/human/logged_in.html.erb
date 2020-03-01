@@ -1,8 +1,0 @@
-<%= form_for @human, url: human_index_path do |f| %>
-　<h1>1週間の体重</h1>
-　<ul>
-　<li>月曜日</li>
-  <%= f.number_field :weight, step: "0.1" %>
-  <%= f.submit %>
-  </ul>
-<% end %>

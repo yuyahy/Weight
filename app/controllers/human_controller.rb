@@ -5,7 +5,7 @@ class HumanController < ApplicationController
     end
     
     def index
-      @human = Human.new
+      @human = Human.all
     end
     
     def create
@@ -14,7 +14,7 @@ class HumanController < ApplicationController
     end
     
     def show
-      @human = Human.all
+      @human = Human.find_by(id: params[:id])
     end
     
     private

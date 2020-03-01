@@ -1,0 +1,7 @@
+<h1>体重</h1>
+<% @human.each do |human| %>
+  <%= human.weight %><br>
+<% end %>
+  <%= line_chart @human.pluck(:created_at, :weight) %>
+<%= link_to "体重記録", new_human_path %>
+<%= link_to "ログアウト", logout_path, method: :delete %>

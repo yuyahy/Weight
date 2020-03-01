@@ -1,8 +1,8 @@
-<h1>体重</h1>
-<% @human.each do |human| %>
-  <%= human.weight %><br>
+<%= form_for @human, url: human_path(@human) do |f| %>
+　<h1>1週間の体重</h1>
+　<ul>
+　<li>月曜日</li>
+  <%= f.number_field :weight, step: "0.1" %>
+  <%= f.submit %>
+  </ul>
 <% end %>
-  <%= line_chart @human.pluck(:created_at, :weight) %>
-<%= link_to '戻る', human_path %>
-<%= link_to "体重記録", new_human_path %>
-<%= link_to "ログアウト", logout_path, method: :delete %>

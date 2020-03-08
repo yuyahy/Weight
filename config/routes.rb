@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root   'human#index'
-  get    '/signup',  to: 'users#new'
+  get    '/signup',  to: 'human#new'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'

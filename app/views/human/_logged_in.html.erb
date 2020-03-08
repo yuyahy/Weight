@@ -3,5 +3,5 @@
   <%= human.weight %><br>
 <% end %>
   <%= line_chart @human.pluck(:created_at, :weight) %>
-<%= link_to "体重記録", new_human_path %>
+<%= link_to "体重記録", human_path(@human.id) %>
 <%= link_to "ログアウト", logout_path, method: :delete %>

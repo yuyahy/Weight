@@ -14,11 +14,12 @@ class HumanController < ApplicationController
     
     def create
      @human = Human.new(human_params)
-      if @human.save!
+      if @human.save
         session[:human_id] = @human.id
         flash[:notice] = "ユーザー登録が完了しました"
         redirect_to human_path(@human.id)
       else
+        flash[:notice] = "ユーザー登録に失敗しました"
         render :new
       end
     end

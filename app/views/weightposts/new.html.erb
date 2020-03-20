@@ -1,0 +1,7 @@
+<%= form_for @weightpost,url: weightposts_path(@weightpost) do |f| %>
+　<h1>今日の体重</h1>
+　<ul>
+  <%= f.number_field :weight, step: "0.1" %>
+  <%= f.submit %>
+  </ul>
+<% end %>

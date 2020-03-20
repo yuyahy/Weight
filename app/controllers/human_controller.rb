@@ -34,6 +34,6 @@ class HumanController < ApplicationController
     # エラーが発生する
     # password can't be blank
     def human_params
-      params.require(:human).permit(:id,:name,:email,:weight,:password,:password_confirmation, :admin)
+      params.require(:human).permit(:id,:name,:email,:password,:password_confirmation, :admin)
     end
 end

@@ -1,0 +1,2 @@
+module WeightpostsHelper
+end

@@ -2,6 +2,10 @@
 　<h1>今日の体重</h1>
 　<ul>
   <%= f.number_field :weight, step: "0.1" %>
+  <br>
+  <%= f.date_select :created_at, 
+  {include_blank: true,  
+  use_month_numbers: true}, {class: 'time-box'} %>
   <%= f.submit %>
   </ul>
 <% end %>

@@ -1,5 +1,5 @@
 <p>体重の変動</p>
- <%= @date %>
- <%= @weights %>
+ <%= @h %>
 
- <%= line_chart @weightposts.pluck(:created_at, :weight) %>
+ <%= line_chart @h, xtitle: "日付", ytitle: "体重",
+ id: "users-chart", width: "1400px", height: "500px" %>

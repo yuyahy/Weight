@@ -15,5 +15,11 @@ module WeightApp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.web_console.whitelisted_ips = '111.239.178.2'
+    
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
+    
+    # デフォルトのロケールを日本（ja）に設定
+    config.i18n.default_locale = :ja
   end
 end

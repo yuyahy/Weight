@@ -3,7 +3,7 @@ class HumanController < ApplicationController
   # 必要になるかもしれないので残しておく
   # Create内でエラーが発生する様になったら
   # 見返すこと
-  #wrap_parameters :human, include: [:name, :weight, :email, :password, :password_confirmation]
+  #wrap_parameters :human, include: [:name, :email, :password, :password_confirmation]
     def new
      @human = Human.new
     end

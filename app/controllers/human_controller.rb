@@ -16,10 +16,9 @@ class HumanController < ApplicationController
      @human = Human.new(human_params)
       if @human.save
         session[:human_id] = @human.id
-        flash[:notice] = "ユーザー登録が完了しました"
-        redirect_to human_path(@human.id)
+        redirect_to human_path(@human.id), success: "ユーザー登録が完了しました"
       else
-        flash[:notice] = "ユーザー登録に失敗しました"
+        flash[:error] = "ユーザー登録に失敗しました"
         render :new
       end
     end

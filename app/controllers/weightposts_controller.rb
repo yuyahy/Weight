@@ -7,10 +7,9 @@ class WeightpostsController < ApplicationController
     params[:weightpost][:created_at] = recordtime_join
     @weightpost = current_user.weightposts.build(weightpost_params)
     if @weightpost.save
-      flash[:success] = "体重を記録しました"
-      redirect_to root_url
+      redirect_to root_url, success: "体重を記録しました"
     else
-      flash[:failure] = "体重の記録に失敗しました"
+      flash[:error] = "体重の記録に失敗しました"
       render new_weightpost_path
     end
   end

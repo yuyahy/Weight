@@ -1,13 +1,15 @@
 <div class="container-fluid">
   <ul class="row fixed-top">
-    <li class="col">
-      <%= link_to "Home",root_path, class: 'btn btn-default' %>
-    </li>
-    <li class="col">
-      <%= link_to "Log in",login_path, class: 'btn btn-default' %>
-    </li>
-    <li class="col">
-      <%= link_to "Log out",logout_path, method: :delete, class: 'btn btn-default' %>
-    </li>
+    <div class="row">
+      <%= link_to "WeightAppホーム",root_path, class: 'btn btn-default' %>
+      <% if logged_in? %>
+        <%= link_to "ログアウト",logout_path, method: :delete, class: 'btn btn-default' %>
+        <%= link_to "体重記録", new_weightpost_path, class: 'btn btn-default' %>
+        <%= link_to "プログレス", weightpost_path(:human_id), class: 'btn btn-default' %>
+      <% else %>
+        <%= link_to "登録", new_human_path, class: 'btn btn-default' %>
+        <%= link_to "ログイン",login_path, class: 'btn btn-default' %>
+      <% end %>
+    </div>>
   </ul>
 </div>

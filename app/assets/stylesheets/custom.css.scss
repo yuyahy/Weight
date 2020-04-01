@@ -2,13 +2,10 @@
 
 /* header */
 #logo {
-  text-align: center;
   font-size: 1.7em;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-  margin-right: auto;
-  margin-left : auto;
   &:hover {
     color: white;
     text-decoration: none;
@@ -31,8 +28,13 @@
   }
 }
 
+html {
+  height: 100%;
+}
 body {
-  padding-top: 50px;
+  padding-top: 70px;
+  text-align: center;
+  height: 100%;
 }
 
 .fixed-top {
@@ -41,17 +43,19 @@ body {
   line-height: 50px;
 }
 
-li {
+.col {
   display: inline-block;
-  color: white;
 }
 
 .fixed-bottom {
   background: black;
-  height:　50px;
   line-height: 50px;
+  height: auto;
+  margin-top: auto;
+  position:absolute;
+	bottom:0;
 }
 
 .alert {
-    text-align: center;
+  text-align: center;
 }

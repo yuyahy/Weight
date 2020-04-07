@@ -1,5 +1,14 @@
 <p>体重の変動</p>
- <%= @h %>
-
- <%= line_chart @h, xtitle: "日付", ytitle: "体重",
+ <%= line_chart @record_weight_date, xtitle: "日付", ytitle: "体重",
  id: "users-chart", width: "1400px", height: "500px" %>
+ 
+<br></br>
+<p>記録</p>
+<div>
+ <% @record_weight_date.each do |key, value| %>
+  <br>
+   <%= key %>
+   <strong><%= value %>Kg</strong>
+  </br>
+ <% end %>
+</div>

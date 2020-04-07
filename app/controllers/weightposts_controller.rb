@@ -5,6 +5,7 @@ class WeightpostsController < ApplicationController
   
   def create
     params[:weightpost][:created_at] = recordtime_join
+    check_record_day(recordtime_join)
     @weightpost = current_user.weightposts.build(weightpost_params)
     if @weightpost.save
       redirect_to root_url, success: "体重を記録しました"
@@ -16,10 +17,10 @@ class WeightpostsController < ApplicationController
   
   def show
     weightposts = Weightpost.where(human_id: current_user.id)
-    weights= weightposts.pluck(:weight)
-    date = weightposts.pluck(:created_at).map{ |date| I18n.l date}
-    ary = [date, weights].transpose
-    @h = Hash[*ary.flatten]
+    @weights= weightposts.pluck(:weight)
+    date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
+    ary = [date, @weights].transpose
+    @record_weight_date = Hash[*ary.flatten]
   end
   
   def destroy
@@ -30,14 +31,29 @@ class WeightpostsController < ApplicationController
   end
   
   private
+  
+  # 入力された体重記録日に
+  # 既に体重が記録されていないかチェックする
+  def check_record_day(recordtime)
+    weightposts = Weightpost.where(human_id: current_user.id)
+    date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
+    # 判定用に年/月/日に整形
+    record = I18n.l recordtime, format: :default
+    if date.include?(record)
+       #確認メッセージ
+       #OKなら上書きする
+       #render new_weightpost_path
+       render root_url
+    end
+  end
 
-   def weightpost_params
-     params.require(:weightpost).permit(:weight,:created_at)
-   end
+  def weightpost_params
+    params.require(:weightpost).permit(:weight,:created_at)
+  end
    
-   # 入力された体重の記録日付を
-   # 整形する
-   def recordtime_join
+  # 入力された体重の記録日付を
+  # 整形する
+  def recordtime_join
     # パラメータ取得
     date = params[:weightpost]
     # ブランク時のエラー回避のため、ブランクだったら何もしない
@@ -46,5 +62,5 @@ class WeightpostsController < ApplicationController
     end
     # 年月日別々できたものを結合して新しいDate型変数を作って返す
     Date.new date["created_at(1i)"].to_i,date["created_at(2i)"].to_i,date["created_at(3i)"].to_i
-   end
+  end
 end

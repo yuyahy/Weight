@@ -1,0 +1,9 @@
+<%= form_for @weightpost, url: human_weightpost_path(@weightpost), html: {method: "patch"} do |f| %>
+ <form>
+
+  <div class="form-group">
+   <label for="exampleInputEmail1">編集する</label>
+   <%= f.number_field :weight, step: "0.1", :value =>@weightpost.weight %>
+  </div><!--form-group-->
+  <button type="submit" class="btn btn-primary">保存</button>
+<% end %>

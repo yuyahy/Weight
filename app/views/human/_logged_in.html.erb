@@ -1,3 +1,3 @@
-<%= link_to "体重記録", new_weightpost_path %>
-<%= link_to "プログレス", weightpost_path(:human_id) %>
+<%= link_to "体重記録", new_human_weightpost_path(:human_id) %>
+<%= link_to "プログレス", human_weightposts_path(:human_id) %>
 <%= link_to "ログアウト", logout_path, method: :delete %>

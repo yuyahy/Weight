@@ -24,7 +24,7 @@ class HumanController < ApplicationController
     end
     
     def show
-      @human = Human.find_by(params[:id])
+      @human = Human.find(current_user.id)
     end
     
     private

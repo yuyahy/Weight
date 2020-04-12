@@ -11,16 +11,22 @@ class WeightpostsController < ApplicationController
       redirect_to root_url, success: "体重を記録しました"
     else
       flash[:error] = "体重の記録に失敗しました"
-      render new_weightpost_path
+      render new_human_weightpost_path
     end
   end
   
   def show
+
+  end
+  
+  def index
     weightposts = Weightpost.where(human_id: current_user.id)
-    @weights= weightposts.pluck(:weight)
-    date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
-    ary = [date, @weights].transpose
-    @record_weight_date = Hash[*ary.flatten]
+    @weights= weightposts.pluck(:created_at, :weight)
+    @weight_ids = weightposts.pluck(:created_at, :weight, :id)
+    #byebug
+    #date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
+    #ary = [date, @weights].transpose
+    #@record_weight_date = Hash[*ary.flatten]
   end
   
   def destroy
@@ -30,8 +36,18 @@ class WeightpostsController < ApplicationController
     return Human.find_by(id: self.human_id)
   end
   
-  private
+  def edit
+    @weightpost = Weightpost.find(params[:id])
+  end 
   
+  def update
+    @weightpost = Weightpost.find(params[:id])
+    @weightpost.update(weightpost_edit_params)
+    #byebug
+    redirect_to root_url, success: "体重を更新しました"
+  end
+  
+  private
   # 入力された体重記録日に
   # 既に体重が記録されていないかチェックする
   def check_record_day(recordtime)
@@ -50,6 +66,12 @@ class WeightpostsController < ApplicationController
   def weightpost_params
     params.require(:weightpost).permit(:weight,:created_at)
   end
+  
+  # 体重更新用パラメータ
+  def weightpost_edit_params
+    params.require(:weightpost).permit(:weight)
+  end
+
    
   # 入力された体重の記録日付を
   # 整形する

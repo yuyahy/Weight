@@ -14,7 +14,10 @@ module WeightApp
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.web_console.whitelisted_ips = '111.239.178.2'
+    if Rails.env.deveropment?
+    #config.web_console.whitelisted_ips = '0.0.0.0/0'
+    end
+    #config.web_console.whitelisted_ips = '111.239.178.2'
     
     # タイムゾーンを日本時間に設定
     config.time_zone = 'Asia/Tokyo'

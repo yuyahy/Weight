@@ -23,7 +23,6 @@ class WeightpostsController < ApplicationController
     weightposts = Weightpost.where(human_id: current_user.id)
     @weights= weightposts.pluck(:created_at, :weight)
     @weight_ids = weightposts.pluck(:created_at, :weight, :id)
-    #byebug
     #date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
     #ary = [date, @weights].transpose
     #@record_weight_date = Hash[*ary.flatten]

@@ -26,6 +26,12 @@ class HumanController < ApplicationController
     def show
       @human = Human.find(current_user.id)
     end
+
+    def destroy 
+      @human = Human.find(current_user.id)
+      @human.destroy
+      redirect_to root_path, success: "退会しました。"
+    end
     
     private
     # human_paramsにしないと

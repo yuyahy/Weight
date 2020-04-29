@@ -1,3 +1,6 @@
-<%= link_to "体重記録", new_human_weightpost_path(:human_id) %>
-<%= link_to "プログレス", human_weightposts_path(:human_id) %>
-<%= link_to "ログアウト", logout_path, method: :delete %>
+<%= link_to "体重記録", new_human_weightpost_path(:human_id), class: 'btn btn-link' %>
+<%= link_to "プログレス", human_weightposts_path(:human_id), class: 'btn btn-link' %>
+<%= link_to "ログアウト", logout_path, method: :delete, class: 'btn btn-link' %>
+<%= link_to "退会", human_path(:human_id), method: :delete, 
+data: { confirm: '退会しますか？今までの記録は全て削除されます。' }, class: 'btn btn-link' %>
+

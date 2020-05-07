@@ -1,5 +1,5 @@
 require 'rails_helper'
-include SessionsHelper ## ここ
+
 RSpec.describe Human, type: :model do
   # name と email と passwordを保持していることが正である
   it "is valid with a name ,email and password" do

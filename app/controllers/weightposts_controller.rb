@@ -23,9 +23,6 @@ class WeightpostsController < ApplicationController
     weightposts = Weightpost.where(human_id: current_user.id)
     @weights= weightposts.pluck(:created_at, :weight)
     @weight_ids = weightposts.pluck(:created_at, :weight, :id)
-    #date = weightposts.pluck(:created_at).map{ |date| I18n.l date, format: :short}
-    #ary = [date, @weights].transpose
-    #@record_weight_date = Hash[*ary.flatten]
   end
   
   def destroy
@@ -57,7 +54,6 @@ class WeightpostsController < ApplicationController
     if date.include?(record)
        #確認メッセージ
        #OKなら上書きする
-       #render new_weightpost_path
        render root_url
     end
   end

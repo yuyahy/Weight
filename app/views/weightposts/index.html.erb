@@ -3,8 +3,10 @@
  id: "users-chart", width: "1400px", height: "500px" %>
  
 <br></br>
+<%= link_to "CSV", human_weightposts_path(format: :csv), class: "btn btn-primary" %>
 <p>記録</p>
 <div>
+<%# 日付、体重、id　%>
  <% @weight_ids.each do |elem1, elem2, elem3| %>
   <br>
    <%= I18n.l elem1, format: :short %>

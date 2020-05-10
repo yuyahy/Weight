@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20200321053106) do
 
-  create_table "humen", force: :cascade do |t|
+  create_table "humen", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(version: 20200321053106) do
     t.string "email"
   end
 
-  create_table "weightposts", force: :cascade do |t|
-    t.float "weight"
-    t.integer "human_id"
+  create_table "weightposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float "weight", limit: 24
+    t.bigint "human_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["human_id", "created_at"], name: "index_weightposts_on_human_id_and_created_at"
     t.index ["human_id"], name: "index_weightposts_on_human_id"
   end
 
+  add_foreign_key "weightposts", "humen"
 end

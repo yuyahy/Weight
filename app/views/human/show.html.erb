@@ -1,1 +1,12 @@
-<p>体重の変動</p>
+<%= @human.name %>
+<p>最新体重(kg)</p>
+<%= @weight %>
+
+<p>最新体重(lbs)</p>
+<%= @weight_lbs %>
+
+<p>PFCバランス</p>
+<h1>Protein</h1><%= @hash_PFC[:protein] %>
+<h1>Fat</h1><%= @hash_PFC[:fat] %>
+<h1>Carb</h1><%= @hash_PFC[:carb] %>
+

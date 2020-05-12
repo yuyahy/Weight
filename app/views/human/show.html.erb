@@ -1,12 +1,9 @@
-<%= @human.name %>
-<p>最新体重(kg)</p>
-<%= @weight %>
-
-<p>最新体重(lbs)</p>
-<%= @weight_lbs %>
-
-<p>PFCバランス</p>
-<h1>Protein</h1><%= @hash_PFC[:protein] %>
-<h1>Fat</h1><%= @hash_PFC[:fat] %>
-<h1>Carb</h1><%= @hash_PFC[:carb] %>
-
+<h1><%= @human.name %>さん</h1><br>
+<h2>最新体重: <%= @weight[0]%>Kg</h2><br>
+<ul>
+<h2>目標PFCバランス</h2>
+<h3>Protein <%= @hash_PFC[:protein] %>g</h3>
+<h3>Fat <%= @hash_PFC[:fat] %>g</h3>
+<h3>Carb <%= @hash_PFC[:carb] %>g</h3>
+</ul>
+ <%= pie_chart @hash_PFC %>

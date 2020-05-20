@@ -25,6 +25,9 @@ class HumanController < ApplicationController
     
     def show
       @human = Human.find(current_user.id)
+      @weight =retrieve_latestWeight
+      @weight_lbs = convKgtoLBS(@weight[0])
+      @hash_PFC = calc_PFC(@weight_lbs)
     end
 
     def destroy 
@@ -40,5 +43,31 @@ class HumanController < ApplicationController
     # password can't be blank
     def human_params
       params.require(:human).permit(:id,:name,:email,:password,:password_confirmation, :admin)
+    end
+
+    # ログインユーザーの最新の体重を取得する
+    # 返り値は要素数1の配列
+    def retrieve_latestWeight
+      Weightpost.where(human_id: current_user.id).
+      order(created_at: :desc).limit(1).pluck(:weight)
+    end
+
+    # 数値をkg→LBSに変換する
+    def convKgtoLBS(num)
+      num * Conv_Unit::KgToLBS
+    end
+
+    # 体重(lbs)からPFCバランスを算出する
+    def calc_PFC(weight_lbs)
+      # Dorian Yatesの計算式を基に算出
+      # 参考: https://www.bodybuilding.com/fun/dorian_yates_nutrition_interview.htm
+      protein = weight_lbs * Calc_PFC::ProteinFromLBS
+      fat = protein * Calc_PFC::FatFromProtein
+      carb = protein * Calc_PFC::CarbFromProtein
+      hash_PFC = {
+        protein: protein.round,
+        fat: fat.round,
+        carb: carb.round,
+      }
     end
 end
